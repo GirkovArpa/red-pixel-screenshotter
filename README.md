@@ -14,7 +14,9 @@ On Windows x64, for instance, it would be located in `https://github.com/c-smile
 
 2. Plop it into the same folder with the contents of this repository.
 
-3. Run it!
+3. Create a folder named `unique_screenshots` in this same folder.
+
+4. Run it!
 
 ## Notes
 
