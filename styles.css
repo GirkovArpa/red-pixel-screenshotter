@@ -2,3 +2,7 @@ html, body {
   width: max-content;
   height: max-content;
 }
+
+div { flow:row(label,input,input); font:system; border-spacing:4dip; margin:4dip; }
+div > label { vertical-align: baseline; }
+section { border:1dip solid; padding:4dip; margin:4dip; }

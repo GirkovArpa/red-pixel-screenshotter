@@ -1,0 +1,29 @@
+$(#begin).on("click", function() {
+  global_taking_screenshots = !global_taking_screenshots;
+  this.html = global_taking_screenshots ? "Stop Screencapture" : "Begin Screencapture";
+  stdout.println(global_taking_screenshots);
+});
+
+$(#slider_red).on("change", function() {
+  $(#input_red).value = this.value;
+});
+
+$(#input_red).on("change", function() {
+  $(#slider_red).value = this.value;
+});
+
+$(#slider_green).on("change", function() {
+  $(#input_green).value = this.value;
+});
+
+$(#input_green).on("change", function() {
+  $(#slider_green).value = this.value;
+});
+
+$(#slider_blue).on("change", function() {
+  $(#input_blue).value = this.value;
+});
+
+$(#input_blue).on("change", function() {
+  $(#slider_blue).value = this.value;
+});

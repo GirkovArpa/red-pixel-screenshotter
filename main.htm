@@ -3,11 +3,35 @@
   <head>
     <title>Radar Screencapture</title>
     <style src="./styles.css"></style>
+    <script type="text/tiscript" src="./inputs.tis"></script>
     <script type="text/tiscript" src="./script.tis"></script>
   </head>
 
   <body>
-    Screencapture in progress ...
+    <center><h4>Radar Screencapture</h4></center>
+
+    <section>
+      <div>
+        <label for=red>Red&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input|hslider(red) #slider_red min="0" max="255" value="255" />
+          <input|number #input_red value="255" />
+      </div>
+
+      <div>
+        <label for=green>Green</label>
+        <input|hslider(green) #slider_green min="0" max="255" />
+          <input|number #input_green value="000" />
+      </div>
+
+      <div>
+        <label for=blue>Blue&nbsp;&nbsp;&nbsp;</label>
+        <input|hslider(blue) #slider_blue min="0" max="255" />
+          <input|number #input_blue value="000" />
+      </div>
+    </section>
+
+
+    <center><button #begin>Begin Screencapture</button></center>
   </body>
 
 </html>

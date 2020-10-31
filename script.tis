@@ -1,5 +1,5 @@
 if (view.connectToInspector) { // for debugging with the Sciter inspector
-  // view.connectToInspector(rootElement, inspectorIpAddress);
+   view.connectToInspector(rootElement, inspectorIpAddress);
 }
 
 function self.ready() {
@@ -10,6 +10,7 @@ function self.ready() {
   view.windowResizable = false;
 }
 
+let global_taking_screenshots = false;
 let global_screenshot;
 let global_last_result = "";
 let global_screenshot_count = 0;
@@ -20,6 +21,7 @@ function saveImage(bytes, filename) {
 }
 
 function takeScreenshot() {
+  if (global_taking_screenshots == false) return true;
   const screenshot = View.screenBox(0, #snapshot);
   const bytes = screenshot.toBytes();
   let duplicate = true;
