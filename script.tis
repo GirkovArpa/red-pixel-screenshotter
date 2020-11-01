@@ -27,27 +27,23 @@ function takeScreenshot() {
   let contains_red_pixel = false;
 
   const pixels = screenshot.toBytes(#bgra);
-  for (let i = 0; i < pixels.length - 4; i += 4) {
-      $(#status).html = i.toString();
+  const threshold_red = $(#input_red).value;
+  const threshold_green = $(#input_green).value;
+  const threshold_blue = $(#input_blue).value;
 
-      if (i > 100000) break;
+  const bytes = screenshot.toBytes();
+  const screenshot_filename = "temp.png";
+  saveImage(bytes, screenshot_filename);
 
-      const blue = pixels[i];
-      const green = pixels[i + 1];
-      const red = pixels[i + 2];
-
-      const threshold_red = $(#input_red).value;
-      const threshold_green = $(#input_green).value;
-      const threshold_blue = $(#input_blue).value;
-
-      if (red >= threshold_red && green <= threshold_green && blue <= threshold_blue) {
-        contains_red_pixel = true;
-        stdout.println("contains red pixel at", i);
-        break;
-      }
-  }
+  contains_red_pixel = view.find_red_pixel(
+    "./unique_screenshots/" + screenshot_filename, 
+    threshold_red, 
+    threshold_green, 
+    threshold_blue
+  );
 
   if (contains_red_pixel == true) {
+    stdout.println("contains red pixel");
     const bytes = screenshot.toBytes();
     const screenshot_filename = "screenshot" + global_screenshot_count + ".png";
     saveImage(bytes, screenshot_filename);
