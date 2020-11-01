@@ -23,28 +23,40 @@ function saveImage(bytes, filename) {
 function takeScreenshot() {
   if (global_taking_screenshots == false) return true;
   const screenshot = View.screenBox(0, #snapshot);
-  const bytes = screenshot.toBytes();
-  let duplicate = true;
 
-   if (global_screenshot != undefined) {
-    const old_bytes = global_screenshot.toBytes();
-    if (bytes.length == old_bytes.length) {
-      for (var i = 0; i < bytes.length; i++) {
-        if (bytes[i] != old_bytes[i]) {
-          duplicate = false;
-          break;
-        }
+  let contains_red_pixel = false;
+
+  const pixels = screenshot.toBytes(#bgra);
+  for (let i = 0; i < pixels.length - 4; i += 4) {
+      $(#status).html = i.toString();
+
+      if (i > 100000) break;
+
+      const blue = pixels[i];
+      const green = pixels[i + 1];
+      const red = pixels[i + 2];
+
+      const threshold_red = $(#input_red).value;
+      const threshold_green = $(#input_green).value;
+      const threshold_blue = $(#input_blue).value;
+
+      if (red >= threshold_red && green <= threshold_green && blue <= threshold_blue) {
+        contains_red_pixel = true;
+        stdout.println("contains red pixel at", i);
+        break;
       }
-    } else {
-      duplicate = false;
-    }
   }
-  if (duplicate == false) {
+
+  if (contains_red_pixel == true) {
+    const bytes = screenshot.toBytes();
     const screenshot_filename = "screenshot" + global_screenshot_count + ".png";
     saveImage(bytes, screenshot_filename);
     global_last_result = result;
     global_screenshot_count++;
+  } else {
+    stdout.println("does not contain red pixel");
   }
+
   global_screenshot = screenshot;
   return true; // keep timer ticking
 }

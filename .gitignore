@@ -1,2 +1,7 @@
 *.exe
+*.dll
 unique_screenshots/*.png
+
+# Added by cargo
+
+/target
