@@ -1,3 +1,5 @@
+#![windows_subsystem = "windows"] // hide console window
+
 extern crate image;
 #[macro_use]
 extern crate sciter;
