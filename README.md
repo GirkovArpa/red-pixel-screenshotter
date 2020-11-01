@@ -25,3 +25,7 @@ Adjust the sliders to control the thresholds to determine how "red" a pixel must
 - The pixel's red value must be AT LEAST as great as the red slider.
 - The pixel's green and blue values must be LESS THAN (or equal to) the green and blue sliders.
 - To be so specific that only a perfectly red pixel `rgb(255, 0, 0)` triggers a screenshot, leave slider values as-is.
+
+## Why?
+
+[This](https://old.reddit.com/r/software/comments/jj1ecv/software_to_take_screenshots_when_there_are/) Reddit thread.
