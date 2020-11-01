@@ -21,7 +21,10 @@ function saveImage(bytes, filename) {
 }
 
 function takeScreenshot() {
+  const date = new Date().valueOf();
+
   if (global_taking_screenshots == false) return true;
+
   const screenshot = View.screenBox(0, #snapshot);
 
   let contains_red_pixel = false;
@@ -46,9 +49,9 @@ function takeScreenshot() {
     let pixel_index = contains_red_pixel - 1;
     let y = pixel_index / screenshot.width;
     let x = pixel_index % screenshot.width;
-    $(#status).html = String.$(Red pixel found at coords {x}, {y}.);
+    $(#status).html = String.$(Red pixel found at coords {x}, {y});
   } else {
-    $(#status).html = "No red pixel found.";
+    $(#status).html = "No red pixel found";
   }
 
   if (contains_red_pixel) {
@@ -63,6 +66,11 @@ function takeScreenshot() {
   }
 
   global_screenshot = screenshot;
+
+  const diff = new Date().valueOf() - date;
+  stdout.println("Took", (diff / 1000), "seconds");
+  $(#status2).html = String.$(in {diff / 1000} seconds.);
+
   return true; // keep timer ticking
 }
 
