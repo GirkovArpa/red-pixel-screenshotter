@@ -26,3 +26,12 @@ $(#slider_blue).on("change", function() {
 $(#input_blue).on("change", function() {
   $(#slider_blue).value = this.value;
 });
+
+$(#info).on("click", function() {
+  view.msgbox(
+    #information,
+    "This Application uses Sciter Engine (https://sciter.com), copyright Terra Informatica Software, Inc.",
+    "About"
+  );
+  return true;
+});
