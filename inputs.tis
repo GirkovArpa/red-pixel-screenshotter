@@ -1,7 +1,6 @@
 $(#begin).on("click", function() {
   global_taking_screenshots = !global_taking_screenshots;
   this.html = global_taking_screenshots ? "Stop Screencapture" : "Begin Screencapture";
-  stdout.println(global_taking_screenshots);
 });
 
 $(#slider_red).on("change", function() {

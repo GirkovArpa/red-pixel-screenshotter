@@ -17,12 +17,18 @@ fn main() {
 	frame.run_app();
 }
 
-fn check_if_contains_red(filename: &str, red: i32, green: i32, blue: i32) -> bool {
+fn check_if_contains_red(filename: &str, red: i32, green: i32, blue: i32) -> i32 {
     let screenshot = image::open(filename).unwrap().to_rgb();
-    let mut contains_red_pixel = false;
+    let mut contains_red_pixel = 0;
+    let mut index = 0;
     for pixel in screenshot.pixels() {
+        index += 1;
         if pixel[0] >= red as u8 && pixel[1] <= green as u8 && pixel[2] <= blue as u8 {
-            contains_red_pixel = true;
+            let (width, height) = screenshot.dimensions();
+            let y = index / width;
+            let x = index % width;
+            contains_red_pixel = index as i32;
+            println!("pixel {} is red at coords {}, {}", index - 1, x, y);
             break;
         }
     }

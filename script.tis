@@ -42,8 +42,17 @@ function takeScreenshot() {
     threshold_blue
   );
 
-  if (contains_red_pixel == true) {
-    stdout.println("contains red pixel");
+  if (contains_red_pixel) {
+    let pixel_index = contains_red_pixel - 1;
+    let y = pixel_index / screenshot.width;
+    let x = pixel_index % screenshot.width;
+    $(#status).html = String.$(Red pixel found at coords {x}, {y}.);
+  } else {
+    $(#status).html = "No red pixel found.";
+  }
+
+  if (contains_red_pixel) {
+    stdout.println("contains red pixel @ #", contains_red_pixel - 1);
     const bytes = screenshot.toBytes();
     const screenshot_filename = "screenshot" + global_screenshot_count + ".png";
     saveImage(bytes, screenshot_filename);
